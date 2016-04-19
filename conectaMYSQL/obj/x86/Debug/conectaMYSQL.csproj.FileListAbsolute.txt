@@ -1,0 +1,33 @@
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.exe
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.pdb
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Form1.resources
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Properties.Resources.resources
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csproj.GenerateResource.Cache
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.exe
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.pdb
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csprojResolveAssemblyReference.cache
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Modificarprecios.resources
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.agregacliente.resources
+C:\Users\HOME\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.vistamaestro.resources
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.exe
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.pdb
+G:\miamor dani\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.exe
+G:\miamor dani\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.pdb
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csprojResolveAssemblyReference.cache
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.agregacliente.resources
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Form1.resources
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Modificarprecios.resources
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Properties.Resources.resources
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.vistamaestro.resources
+G:\miamor dani\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csproj.GenerateResource.Cache
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.agregacliente.resources
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.venta.resources
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Menu.resources
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Modificarprecios.resources
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Properties.Resources.resources
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.vistamaestro.resources
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csproj.GenerateResource.Cache
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.exe
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.pdb
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.exe
+C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.pdb
