@@ -31,3 +31,15 @@ C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\bin\Debug\conecta
 C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.pdb
 C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.exe
 C:\Users\Ale\Desktop\conectaMYSQL(1)\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.pdb
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.exe
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.pdb
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.exe
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.pdb
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csprojResolveAssemblyReference.cache
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.agregacliente.resources
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.venta.resources
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Menu.resources
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Modificarprecios.resources
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.Properties.Resources.resources
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.vistamaestro.resources
+C:\Users\Ale\Desktop\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csproj.GenerateResource.Cache

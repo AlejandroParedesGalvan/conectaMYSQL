@@ -27,7 +27,7 @@ namespace conectaMYSQL
             ms = new conexionMysql("server=db4free.net; database=cristalh; Uid=aledancit; pwd=123456789;");
             Mysqlconect = new MySqlConnection();
             Mysqlconect = ms.conexion(ref m);
-            MessageBox.Show(m);  
+            //MessageBox.Show(m);  
         }
 
         public void cargacliente(ComboBox cb1)
