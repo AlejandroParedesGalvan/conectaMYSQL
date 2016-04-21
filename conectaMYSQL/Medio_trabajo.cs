@@ -235,6 +235,7 @@ namespace conectaMYSQL
             
         }
 
+        
 
         public void modificaprecios(TextBox pintura, TextBox carton,TextBox gancho)
         {
@@ -246,7 +247,12 @@ namespace conectaMYSQL
             ms.executequery(ms.conexion(ref m), query2, ref m);
             MessageBox.Show(m);
         }
-
+        public void ver_insumos(DataGridView d1)
+        {
+            string query = "select nombre,cantidad as precio from insumo";
+            DataSet set = ms.consultaset(ms.conexion(ref m), query, ref m);
+            vista.muestradataset(d1, set, 0);
+        }
 
 
 
@@ -257,9 +263,9 @@ namespace conectaMYSQL
             String ven = "select id_venta,total,factura from venta";
 
             ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), fat, ref m, "detalle"); 
-            MessageBox.Show(m);
+            //MessageBox.Show(m);
             ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), ven, ref m, "venta");
-            MessageBox.Show(m);
+            //MessageBox.Show(m);
 
             System.Data.DataColumn mesclavo = setglobal.Tables["detalle"].Columns["id_venta"];
             System.Data.DataColumn maestro = setglobal.Tables["venta"].Columns["id_venta"];
@@ -279,23 +285,36 @@ namespace conectaMYSQL
             d2.DataSource = relacionventa;
 
         }
-        
-        public void impfactura (DataGridView d )
+        public void vista_detallecliente(DataGridView d1, DataGridView d2)
         {
+            String m = "";
+            String fat = "SELECT cl.id_cliente,fa.fecha,pr.tamaño as Tamaño,pr.color as Color,ven.total,v.nombre as vendedor from venta ven INNER join producto pr on pr.id_producto=ven.id_prod INNER join factura fa on fa.id_fact=ven.factura INNER join vendedor v on v.id_vendedor=fa.id_vencedor INNER join cliente cl on cl.id_cliente=fa.id_cliente";
+            String ven = "select id_cliente,nombre,RFC from cliente";
 
-            String Nombre = d.CurrentRow.Cells[0].Value.ToString(); //Para obtener el nombre
-            String Direccion = d.CurrentRow.Cells[1].Value.ToString(); //Para obtener la dirección
-            String Telefono = d.CurrentRow.Cells[2].Value.ToString(); //Para obtener el telefóno
-            
+            ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), fat, ref m, "detalle");
+            //MessageBox.Show(m);
+            ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), ven, ref m, "cliente");
+            //MessageBox.Show(m);
+
+            System.Data.DataColumn mesclavo = setglobal.Tables["detalle"].Columns["id_cliente"];
+            System.Data.DataColumn maestro = setglobal.Tables["cliente"].Columns["id_cliente"];
+            DataRelation muchos = new System.Data.DataRelation("ventaciente", maestro, mesclavo);
+
+            setglobal.Relations.Add(muchos);
+
+            BindingSource relacionfactura = new BindingSource();
+            relacionfactura.DataSource = setglobal;
+            relacionfactura.DataMember = "cliente";
+
+            BindingSource relacionventa = new BindingSource();
+            relacionventa.DataSource = relacionfactura;
+            relacionventa.DataMember = "ventaciente";
+
+            d1.DataSource = relacionfactura;
+            d2.DataSource = relacionventa;
+
         }
-        
-
-
-
-
-
-
-        
+    
 
     }
 }

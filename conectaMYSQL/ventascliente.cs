@@ -9,19 +9,18 @@ using System.Windows.Forms;
 
 namespace conectaMYSQL
 {
-    public partial class vistamaestro : Form
+    public partial class ventascliente : Form
     {
-        public vistamaestro()
+        public ventascliente()
         {
             InitializeComponent();
         }
-
         Medio_trabajo mt = new Medio_trabajo();
-        private void vistamaestro_Load(object sender, EventArgs e)
+
+        private void ventascliente_Load(object sender, EventArgs e)
         {
             mt.loadprede();
-            mt.vista_detalle(dataGridView1, dataGridView2);
-
+            mt.vista_detallecliente(dataGridView1, dataGridView2);
         }
     }
 }

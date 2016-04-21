@@ -49,9 +49,10 @@ namespace conectaMYSQL
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click_1(object sender, EventArgs e)
         {
-
+            ventascliente v = new ventascliente();
+            v.Show();
         }
     }
 }

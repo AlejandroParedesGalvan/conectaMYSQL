@@ -17,6 +17,7 @@ namespace conectaMYSQL
         }
 
         Medio_trabajo mt = new Medio_trabajo();
+        claseVista cv = new claseVista();
         private void button1_Click(object sender, EventArgs e)
         {
             if ((textBox1.Text != "") && (textBox2.Text != "") && (textBox3.Text != ""))
@@ -27,6 +28,13 @@ namespace conectaMYSQL
         private void Modificarprecios_Load(object sender, EventArgs e)
         {
             mt.loadprede();
+            mt.ver_insumos(dataGridView1);
+           
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }
