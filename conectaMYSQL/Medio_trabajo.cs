@@ -31,7 +31,7 @@ namespace conectaMYSQL
 
         public void loadprede()
         {
-            ms = new conexionMysql("server=localhost; database=dany; Uid=root; pwd=;Port=3306;");
+            ms = new conexionMysql("server=www.db4free.net; database=cristalh; Uid=aledancit; pwd=123456789;Port=3306;");
             Mysqlconect = new MySqlConnection();
             Mysqlconect = ms.conexion(ref m);
             //MessageBox.Show(m);  
