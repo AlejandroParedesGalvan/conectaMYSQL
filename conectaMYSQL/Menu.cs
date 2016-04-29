@@ -24,8 +24,10 @@ namespace conectaMYSQL
 
         private void button2_Click(object sender, EventArgs e)
         {
-            venta ve = new venta();
-            ve.Show();
+            formventas fv = new formventas();
+            fv.Show();
+            //venta ve = new venta();
+            //ve.Show();
         }
 
         private void insertaClienteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +55,12 @@ namespace conectaMYSQL
         {
             ventascliente v = new ventascliente();
             v.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Lote l = new Lote();
+            l.Show();
         }
     }
 }

@@ -20,7 +20,12 @@ namespace conectaMYSQL
         private void vistamaestro_Load(object sender, EventArgs e)
         {
             mt.loadprede();
-            mt.vista_detalle(dataGridView1, dataGridView2);
+            mt.ver_compras(dataGridView1, dataGridView2);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

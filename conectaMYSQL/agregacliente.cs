@@ -19,16 +19,20 @@ namespace conectaMYSQL
         Medio_trabajo mt = new Medio_trabajo();
         private void button1_Click(object sender, EventArgs e)
         {
-            if ((textBox1.Text !="") && (textBox2.Text != ""))
-            {
-                mt.insertacliente(textBox1, textBox2);
-            }
-            else MessageBox.Show("Escribe un Nombre y Rfc");
+            
+                mt.insertacliente(textBox1, textBox2,textBox3,textBox4);
+            
+            
         }
 
         private void agregacliente_Load(object sender, EventArgs e)
         {
             mt.loadprede();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

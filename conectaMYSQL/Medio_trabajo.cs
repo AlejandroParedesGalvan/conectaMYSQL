@@ -21,10 +21,17 @@ namespace conectaMYSQL
         List<int> listaproducto = new List<int>();
         List<double> listainsumo = new List<double>();
 
+        List<int> listapintura = new List<int>();
+        List<int> listagancho = new List<int>();
+        List<int> listacarton = new List<int>();
+        List<double> prelistapintura = new List<double>();
+        List<double> prelistagancho = new List<double>();
+        List<double> prelistacarton = new List<double>();
+
 
         public void loadprede()
         {
-            ms = new conexionMysql("server=db4free.net; database=cristalh; Uid=aledancit; pwd=123456789;");
+            ms = new conexionMysql("server=localhost; database=dany; Uid=root; pwd=;Port=3306;");
             Mysqlconect = new MySqlConnection();
             Mysqlconect = ms.conexion(ref m);
             //MessageBox.Show(m);  
@@ -50,11 +57,68 @@ namespace conectaMYSQL
             }
         }
 
+        public void cargapintura(ComboBox cb1)
+        {
+            listapintura.Clear();
+            MySqlDataReader leer;
+            String op = "select * from pintura";
+            leer = ms.consultareader(ms.conexion(ref m), op, ref m);
+            // MessageBox.Show(m);
+            if (leer != null)
+            {
+                vista.mostrarencombo(cb1, leer, 1, ref listapintura);
+                ms.conexion(ref m).Close();
+                ms.conexion(ref m).Dispose();
+                if (cb1.Items.Count >= 0)
+                {
+                    cb1.SelectedIndex = 0;
+                }
+            }
+        }
+
+        public void cargacarton(ComboBox cb1)
+        {
+            listacarton.Clear();
+            MySqlDataReader leer;
+            String op = "select * from carton";
+            leer = ms.consultareader(ms.conexion(ref m), op, ref m);
+            // MessageBox.Show(m);
+            if (leer != null)
+            {
+                vista.mostrarencombo(cb1, leer, 2, ref listacarton);
+                ms.conexion(ref m).Close();
+                ms.conexion(ref m).Dispose();
+                if (cb1.Items.Count >= 0)
+                {
+                    cb1.SelectedIndex = 0;
+                }
+            }
+        }
+
+        public void cargagancho(ComboBox cb1)
+        {
+            listagancho.Clear();
+            MySqlDataReader leer;
+            String op = "select * from gancho";
+            leer = ms.consultareader(ms.conexion(ref m), op, ref m);
+            // MessageBox.Show(m);
+            if (leer != null)
+            {
+                vista.mostrarencombo(cb1, leer, 1, ref listagancho);
+                ms.conexion(ref m).Close();
+                ms.conexion(ref m).Dispose();
+                if (cb1.Items.Count >= 0)
+                {
+                    cb1.SelectedIndex = 0;
+                }
+            }
+        }
+
         public void cargavendedor(ComboBox cb1)
         {
             listavende.Clear();
             MySqlDataReader leer;
-            String op = "select * from vendedor";
+            String op = "select * from empleado";
             leer = ms.consultareader(ms.conexion(ref m), op, ref m);
             // MessageBox.Show(m);
             if (leer != null)
@@ -68,207 +132,183 @@ namespace conectaMYSQL
                 }
             }
         }
-
-        public void caragaproducto(ComboBox cb1)
+        public void insertacliente(TextBox nombre, TextBox app, TextBox apm,TextBox rfc)
         {
-            listaproducto.Clear();
+            String query = "Insert into cliente (Nombre,Apellidos_P,Apellidos_M,RFC) values('" + nombre.Text + "','" + app.Text + "','" + apm.Text + "','" + rfc.Text + "');";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+
+
+        
+
+        public void insertaempleado(TextBox nombre, TextBox app, TextBox apm, TextBox tel)
+        {
+            String query = "Insert into empleado (Nombre,Apellidos_P,Apellidos_M,Telefono) values('" + nombre.Text + "','" + app.Text + "','" + apm.Text + "','" + tel.Text + "');";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+
+        public void insertaesferas(ComboBox exis, TextBox idlote,String precio)
+        {
+            String query = "Insert into esferas (Existencia,Id_lote,precio_unitario) values(" + exis.Text + "," + idlote.Text + ",'" + precio + "');";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+        
+        public void insertafactura(TextBox idfac, ComboBox idemple, ComboBox idcliente,String fecha)
+        {
+            String query = "Insert into factura (Id_Fatura,Id_Empleado,Id_cliente,Fecha,Subtotal,Total) values("+idfac.Text+"," + listavende[idemple.SelectedIndex] + "," + listacliente[idcliente.SelectedIndex] + ",'" + fecha + "',0,0);";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+
+        
+
+        public void obteninversion(ref double pintura, ref double carton, ref double gancho,ComboBox p,ComboBox c,ComboBox g)
+        {
+            prelistacarton.Clear();
             MySqlDataReader leer;
-            String op = "select * from producto";
+            String op = "select Precio from carton";
             leer = ms.consultareader(ms.conexion(ref m), op, ref m);
             // MessageBox.Show(m);
             if (leer != null)
             {
-                vista.mostrarencombo(cb1, leer, 2, ref listaproducto);
+                vista.obtenprecios(leer, ref prelistacarton);
                 ms.conexion(ref m).Close();
                 ms.conexion(ref m).Dispose();
-                if (cb1.Items.Count >= 0)
-                {
-                    cb1.SelectedIndex = 0;
-                }
             }
-        }
-       
-        public void generaprecios(ref double pintura,ref double carton,ref double gancho)
-        {
-            listainsumo.Clear();
-            MySqlDataReader leer;
-            String op = "select * from insumo";
-            leer = ms.consultareader(ms.conexion(ref m), op, ref m);
+                    
+
+            prelistapintura.Clear();
+            MySqlDataReader leer1;
+            String op1 = "select Precio from pintura";
+            leer1 = ms.consultareader(ms.conexion(ref m), op1, ref m);
             // MessageBox.Show(m);
-            if (leer != null)
+            if (leer1 != null)
             {
-                vista.obtenprecios(leer, ref listainsumo);
+                vista.obtenprecios(leer1, ref prelistapintura);
                 ms.conexion(ref m).Close();
-                ms.conexion(ref m).Dispose();              
+                ms.conexion(ref m).Dispose();
             }
 
-            pintura=listainsumo[0];
-            carton=listainsumo[1];
-            gancho=listainsumo[2];
-        }
-
-        public void crearventa(TextBox cant, TextBox total, ComboBox id_prod,ComboBox cbcliente,ComboBox cbvendedor,String fecha)
-        {
-            String query = "Insert into venta (cantidad,total,id_prod,factura) values('" + cant.Text + "','" + total.Text + "'," + listaproducto[id_prod.SelectedIndex] + ",(SELECT MAX(id_fact) FROM factura));";
-            //MessageBox.Show(""+fecha);
-            String infact="Insert into factura (fecha,subtotal,id_vencedor,id_cliente) values('"+fecha+"','"+total.Text+"',"+listavende[cbvendedor.SelectedIndex]+","+listacliente[cbcliente.SelectedIndex]+");";
-            ms.executequery(ms.conexion(ref m), infact, ref m);
-            MessageBox.Show("factura     "+m);
-            ms.executequery(ms.conexion(ref m), query, ref m);            
-            MessageBox.Show("venta   "+m);
-
-            String insumos = "Insert into insumo_prod (id_venta,id_insumo,cantidad_utiliza) values((SELECT MAX(id_venta) AS id_ven FROM venta),1,'"+cant.Text+"')";
-            String insumos2 = "Insert into insumo_prod (id_venta,id_insumo,cantidad_utiliza) values((SELECT MAX(id_venta) AS id_ven FROM venta),3,'" + cant.Text + "')";
-            String insumos1 = "Insert into insumo_prod (id_venta,id_insumo,cantidad_utiliza) values((SELECT MAX(id_venta) AS id_ven FROM venta),2,'" + cant.Text + "')";
-
-            ms.executequery(ms.conexion(ref m), insumos, ref m);
-            MessageBox.Show("insumo 1    "+m);
-            ms.executequery(ms.conexion(ref m), insumos2, ref m);
-
-            MessageBox.Show("insumo 2    " + m);
-            if(cant.Text=="6")
+            prelistagancho.Clear();
+            MySqlDataReader leer2;
+            String op2 = "select Precio_unidad from gancho";
+            leer2 = ms.consultareader(ms.conexion(ref m), op2, ref m);
+            // MessageBox.Show(m);
+            if (leer2 != null)
             {
-                ms.executequery(ms.conexion(ref m), insumos1, ref m);  
-            }
-            if(cant.Text=="12")
-            {
-                ms.executequery(ms.conexion(ref m), insumos1, ref m);  
-
-            }
-            if (cant.Text == "24")
-            {
-
-                ms.executequery(ms.conexion(ref m), insumos1, ref m);  
+                vista.obtenprecios(leer2, ref prelistagancho);
+                ms.conexion(ref m).Close();
+                ms.conexion(ref m).Dispose();
             }
 
-        }
-
-
-        public void insertacliente(TextBox nombre,TextBox RFC)
-        {
-            String query = "Insert into cliente (nombre,RFC) values('" + nombre.Text + "','"+RFC.Text+"');";
-            ms.executequery(ms.conexion(ref m), query, ref m);
-            MessageBox.Show(m);
-        }
-        
-
-        public void operaciones_costos(ComboBox cbveri, ComboBox tamaño_caja,TextBox cantidad,ComboBox tamaño_E,TextBox T_total) 
-        {
-            String vertamaño = "";
-            vertamaño = (tamaño_E.Text).Substring(4,4);
-            Double subtotal = 0, iva = 0, total = 0, totalcompleto = 0;
-            Double caja=0, pintura=0, gancho=0;
-            generaprecios(ref pintura, ref caja, ref gancho);
-
-            if (cbveri.Text == "Caja")
-            {
-                if (tamaño_caja.Text == "6")
-                {
-                    if (vertamaño == "5 cm")
-                    {
-                        subtotal = (pintura * 0.0037) + (gancho * 0.001);
-                    }
-                    if (vertamaño == "3 cm")
-                    {
-                        subtotal = (pintura * 0.0033) + (gancho * 0.001);
-                    }
-
-                    iva = subtotal * 0.16;
-                    total = subtotal * 0.30;
-                    totalcompleto = ((caja / 30))+((total + subtotal) + iva) * 6;
-                }
-
-                if (tamaño_caja.Text == "12")
-                {
-                    if (vertamaño == "5 cm")
-                    {
-                        subtotal = (pintura * 0.0037) + (gancho * 0.001);
-                    }
-                    if (vertamaño == "3 cm")
-                    {
-                        subtotal = (pintura * 0.0033) + (gancho * 0.001);
-                    }
-
-                    iva = subtotal * 0.16;
-                    total = subtotal * 0.30;
-                    totalcompleto = ((caja/20))+(((total + subtotal) + iva) * 12);                   
-                
-                }
-                if (tamaño_caja.Text == "24")
-                {
-                    if (vertamaño == "5 cm")
-                    {
-                        subtotal = (pintura * 0.0037) + (gancho * 0.001);
-                    }
-                    if (vertamaño == "3 cm")
-                    {
-                        subtotal = (pintura * 0.0033) + (gancho * 0.001);
-                    }
-
-                    iva = subtotal * 0.16;
-                    total = subtotal * 0.30;
-                    totalcompleto = ((caja / 15)) + ((total + subtotal) + iva) * 24;
-                
-                }
-
-            }
-            else
-            {
-                if (vertamaño == "5 cm")
-                {
-                    subtotal = (pintura * 0.0037) + (gancho * 0.001);
-                }
-                if (vertamaño== "3 cm")
-                {
-                    subtotal = (pintura * 0.0033) + (gancho * 0.001);
-                }
-
-                iva = subtotal * 0.16;
-                total = subtotal * 0.30;
-                totalcompleto = ((total + subtotal) + iva) * Convert.ToInt32(cantidad.Text);
-            }
-
-          //  MessageBox.Show("" + subtotal);
-          //  MessageBox.Show("" + iva);
-            //MessageBox.Show("Total a pagar "+totalcompleto.ToString("0.00"));           
-            T_total.Text=totalcompleto.ToString("0.00");       
             
+            pintura = prelistapintura[p.SelectedIndex];
+            carton = prelistacarton[c.SelectedIndex];
+            gancho = prelistagancho[g.SelectedIndex];
         }
+                
 
-        
-
-        public void modificaprecios(TextBox pintura, TextBox carton,TextBox gancho)
+        public void insertalote(TextBox idlote, ComboBox idpintura, ComboBox idcarton, ComboBox idgancho ,String cantidad,ComboBox tamaño, String inversion)
         {
-            String query = "Update insumo set cantidad="+pintura.Text+" where id_insumo=1";
-            String query1 = "Update insumo set cantidad=" + carton.Text + " where id_insumo=2";
-            String query2 = "Update insumo set cantidad=" + gancho.Text + " where id_insumo=3";
+            double pint=0,ganc=0,cart=0,gastos=0;
+            obteninversion(ref pint,ref cart,ref ganc,idpintura,idcarton,idgancho);
+            gastos = pint + ganc + cart;
+            inversion = gastos.ToString();
+
+            String query = "Insert into lote (Id_lote,Id_pintura,id_carton,Id_gancho,Cantidad_esferas,Tamaño_cm,Invercion) values("+idlote.Text+"," + listapintura[idpintura.SelectedIndex] + "," + listacarton[idcarton.SelectedIndex] + "," + listagancho[idgancho.SelectedIndex] + "," +Convert.ToInt32( cantidad) + "," + tamaño.Text + "," + inversion + ");";
             ms.executequery(ms.conexion(ref m), query, ref m);
-            ms.executequery(ms.conexion(ref m), query1, ref m);
-            ms.executequery(ms.conexion(ref m), query2, ref m);
             MessageBox.Show(m);
         }
-        public void ver_insumos(DataGridView d1)
+
+        public void insertapintura(ComboBox color, TextBox precio)
         {
-            string query = "select nombre,cantidad as precio from insumo";
+            String query = "Insert into pintura (Color,Precio) values('" + color.Text + "'," + precio.Text + ");";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+        public void insertacarton(TextBox precio)
+        {
+            String query = "Insert into carton  (Precio) values('" + precio.Text + "');";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+        public void insertagancho(TextBox precio)
+        {
+            String query = "Insert into gancho (Precio_unidad) values(" + precio.Text + ");";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }   
+      
+        public void insertacarrito(DataGridView d1, TextBox idfact, String costo, String cantidad)
+        {
+            double cosT = 0;
+
+            cosT =Convert.ToDouble(d1.CurrentRow.Cells[1].Value) *Convert.ToDouble(cantidad);
+            
+            String query = "Insert into relacion (id_esfera,id_fact,costo_compra,cantidad) values(" + d1.CurrentRow.Cells[0].Value.ToString() + "," + idfact.Text + ","+cosT+","+cantidad+");";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+            MessageBox.Show(m);
+        }
+
+
+        public void ver_esferas(DataGridView d1)
+        {
+            string query = "select es.Id_esferas,es.precio_unitario,lo.Tamaño_cm,p.Color from esferas es inner join lote lo on lo.Id_lote=es.Id_lote inner join pintura p on p.Id_pintura=lo.Id_pintura";
             DataSet set = ms.consultaset(ms.conexion(ref m), query, ref m);
             vista.muestradataset(d1, set, 0);
         }
 
+        public void ver_compras(DataGridView d1,TextBox fac)
+        {
+
+            string query = "select p.Color,lo.Tamaño_cm,r.cantidad,r.costo_compra from relacion r inner join esferas es on es.Id_esferas=r.id_esfera inner join lote lo on lo.Id_lote=es.Id_lote inner join pintura p on p.Id_pintura=lo.Id_pintura where id_fact=" + fac.Text + "";
+            DataSet set = ms.consultaset(ms.conexion(ref m), query, ref m);
+            vista.muestradataset(d1, set, 0);
+        }
+
+        public double calculatotal(DataGridView d1)
+        {
+            double total = 0;
+
+                foreach (DataGridViewRow row in d1.Rows)
+                {
+                    //Aquí seleccionaremos la columna que contiene los datos numericos.
+                    total += Convert.ToDouble(row.Cells[3].Value);
+                }
+            
+            return total;
+        }
 
 
-        public void vista_detalle(DataGridView d1, DataGridView d2)
+
+        public void actualizafact(TextBox idfac,TextBox total)
+        {
+            String query = "Update factura set Subtotal='"+total.Text+"',Total='"+total.Text+"' where Id_Fatura='" + idfac.Text + "'";
+            ms.executequery(ms.conexion(ref m), query, ref m);
+             MessageBox.Show(m);
+            
+        }
+
+
+        public void ver_compras(DataGridView d1, DataGridView d2)
         {
             String m = "";
-            String fat = "SELECT ven.id_venta,fa.fecha,pr.tamaño as Tamaño,pr.color as Color,ven.total,v.nombre as vendedor,cl.nombre as cliente,cl.RFC from venta ven INNER join producto pr on pr.id_producto=ven.id_prod INNER join factura fa on fa.id_fact=ven.factura INNER join vendedor v on v.id_vendedor=fa.id_vencedor INNER join cliente cl on cl.id_cliente=fa.id_cliente";
-            String ven = "select id_venta,total,factura from venta";
+            String fat = "select re.id_fact,re.costo_compra,re.cantidad,es.precio_unitario,lo.Tamaño_cm,p.Color from relacion re inner join esferas es on es.Id_esferas=re.id_esfera inner join lote lo on lo.Id_lote=es.Id_lote inner join pintura p on p.Id_pintura=lo.Id_pintura inner join factura fa on fa.Id_Fatura=re.id_fact";
+            
+            String ven = "select Id_Fatura,Fecha,Total from factura";
 
-            ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), fat, ref m, "detalle"); 
-            //MessageBox.Show(m);
+            ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), fat, ref m, "detalle");
+            MessageBox.Show(m);         
             ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), ven, ref m, "venta");
-            //MessageBox.Show(m);
+            MessageBox.Show(m);
+            
 
-            System.Data.DataColumn mesclavo = setglobal.Tables["detalle"].Columns["id_venta"];
-            System.Data.DataColumn maestro = setglobal.Tables["venta"].Columns["id_venta"];
+            
+            System.Data.DataColumn mesclavo = setglobal.Tables["detalle"].Columns["id_fact"];
+            System.Data.DataColumn maestro = setglobal.Tables["venta"].Columns["Id_Fatura"];
             DataRelation muchos = new System.Data.DataRelation("factura_venta", maestro, mesclavo);
 
             setglobal.Relations.Add(muchos);
@@ -283,38 +323,39 @@ namespace conectaMYSQL
 
             d1.DataSource = relacionfactura;
             d2.DataSource = relacionventa;
-
         }
-        public void vista_detallecliente(DataGridView d1, DataGridView d2)
+
+        public void ver_comprasCliente(DataGridView d1, DataGridView d2)
         {
             String m = "";
-            String fat = "SELECT cl.id_cliente,fa.fecha,pr.tamaño as Tamaño,pr.color as Color,ven.total,v.nombre as vendedor from venta ven INNER join producto pr on pr.id_producto=ven.id_prod INNER join factura fa on fa.id_fact=ven.factura INNER join vendedor v on v.id_vendedor=fa.id_vencedor INNER join cliente cl on cl.id_cliente=fa.id_cliente";
-            String ven = "select id_cliente,nombre,RFC from cliente";
+            String fat = "select re.id_fact,cl.Id_cliente,re.costo_compra,re.cantidad,es.precio_unitario,lo.Tamaño_cm,p.Color from relacion re inner join esferas es on es.Id_esferas=re.id_esfera inner join lote lo on lo.Id_lote=es.Id_lote inner join pintura p on p.Id_pintura=lo.Id_pintura inner join factura fa on fa.Id_Fatura=re.id_fact inner join cliente cl on cl.Id_cliente=fa.Id_cliente";
+            String ven = "select * from cliente";
 
             ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), fat, ref m, "detalle");
-            //MessageBox.Show(m);
-            ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), ven, ref m, "cliente");
-            //MessageBox.Show(m);
+            MessageBox.Show(m);
+            ms.consultasetporreferencia(ref setglobal, ms.conexion(ref m), ven, ref m, "venta");
+            MessageBox.Show(m);
+            //d1.DataSource = setglobal.Tables["detalle"];
 
-            System.Data.DataColumn mesclavo = setglobal.Tables["detalle"].Columns["id_cliente"];
-            System.Data.DataColumn maestro = setglobal.Tables["cliente"].Columns["id_cliente"];
-            DataRelation muchos = new System.Data.DataRelation("ventaciente", maestro, mesclavo);
+
+            System.Data.DataColumn mesclavo = setglobal.Tables["detalle"].Columns["Id_cliente"];
+            System.Data.DataColumn maestro = setglobal.Tables["venta"].Columns["Id_cliente"];
+            DataRelation muchos = new System.Data.DataRelation("factura_venta", maestro, mesclavo);
 
             setglobal.Relations.Add(muchos);
 
             BindingSource relacionfactura = new BindingSource();
             relacionfactura.DataSource = setglobal;
-            relacionfactura.DataMember = "cliente";
+            relacionfactura.DataMember = "venta";
 
             BindingSource relacionventa = new BindingSource();
             relacionventa.DataSource = relacionfactura;
-            relacionventa.DataMember = "ventaciente";
+            relacionventa.DataMember = "factura_venta";
 
             d1.DataSource = relacionfactura;
             d2.DataSource = relacionventa;
-
         }
-    
 
+        
     }
 }

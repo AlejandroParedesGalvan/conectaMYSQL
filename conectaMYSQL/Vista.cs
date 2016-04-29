@@ -50,7 +50,7 @@ namespace conectaMYSQL
         {
             while (datos.Read())
             {                
-                losides.Add((int)datos[2]);               
+                losides.Add(Convert.ToDouble(datos[0]));               
             }
         }
 
@@ -59,8 +59,6 @@ namespace conectaMYSQL
             ver.DataSource = datos.Tables[numtabla];
         }
 
-
-
-
+       
     }
 }

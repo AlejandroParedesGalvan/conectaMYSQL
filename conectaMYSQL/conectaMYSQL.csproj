@@ -58,11 +58,17 @@
     </Compile>
     <Compile Include="Classobjeto.cs" />
     <Compile Include="conexionMysql.cs" />
-    <Compile Include="venta.cs">
+    <Compile Include="formventas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="venta.Designer.cs">
-      <DependentUpon>venta.cs</DependentUpon>
+    <Compile Include="formventas.Designer.cs">
+      <DependentUpon>formventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lote.Designer.cs">
+      <DependentUpon>Lote.cs</DependentUpon>
     </Compile>
     <Compile Include="Medio_trabajo.cs" />
     <Compile Include="Menu.cs">
@@ -95,8 +101,11 @@
     <EmbeddedResource Include="agregacliente.resx">
       <DependentUpon>agregacliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="venta.resx">
-      <DependentUpon>venta.cs</DependentUpon>
+    <EmbeddedResource Include="formventas.resx">
+      <DependentUpon>formventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lote.resx">
+      <DependentUpon>Lote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
