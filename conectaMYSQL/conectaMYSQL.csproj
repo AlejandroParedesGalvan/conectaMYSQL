@@ -98,6 +98,12 @@
     <Compile Include="vistamaestro.Designer.cs">
       <DependentUpon>vistamaestro.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistanotafactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistanotafactura.Designer.cs">
+      <DependentUpon>vistanotafactura.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="agregacliente.resx">
       <DependentUpon>agregacliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vistamaestro.resx">
       <DependentUpon>vistamaestro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistanotafactura.resx">
+      <DependentUpon>vistanotafactura.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\agregacliente.datasource" />
     <None Include="Properties\DataSources\claseVista.datasource" />

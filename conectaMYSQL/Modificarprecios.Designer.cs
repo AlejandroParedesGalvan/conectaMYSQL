@@ -107,7 +107,7 @@
             this.groupBox1.Size = new System.Drawing.Size(270, 152);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Pintura";
+            this.groupBox1.Text = "Pintura por Litro";
             // 
             // label4
             // 
@@ -141,7 +141,7 @@
             this.groupBox2.Size = new System.Drawing.Size(226, 146);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Carton";
+            this.groupBox2.Text = "Carton por kilo";
             // 
             // button2
             // 
@@ -200,7 +200,7 @@
             this.groupBox3.Size = new System.Drawing.Size(198, 146);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Gancho";
+            this.groupBox3.Text = "Gancho por kilo";
             // 
             // Modificarprecios
             // 

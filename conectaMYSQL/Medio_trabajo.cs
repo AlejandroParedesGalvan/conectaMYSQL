@@ -156,14 +156,13 @@ namespace conectaMYSQL
             MessageBox.Show(m);
         }
         
-        public void insertafactura(TextBox idfac, ComboBox idemple, ComboBox idcliente,String fecha)
+        public void insertafactura(TextBox idfac, ComboBox idemple, ComboBox idcliente,String fecha,String tipo)
         {
-            String query = "Insert into factura (Id_Fatura,Id_Empleado,Id_cliente,Fecha,Subtotal,Total) values("+idfac.Text+"," + listavende[idemple.SelectedIndex] + "," + listacliente[idcliente.SelectedIndex] + ",'" + fecha + "',0,0);";
+            String query = "Insert into factura (Id_Fatura,Id_Empleado,Id_cliente,Fecha,Subtotal,Total,tipo) values("+idfac.Text+"," + listavende[idemple.SelectedIndex] + "," + listacliente[idcliente.SelectedIndex] + ",'" + fecha + "',0,0,'"+tipo+"');";
             ms.executequery(ms.conexion(ref m), query, ref m);
             MessageBox.Show(m);
         }
-
-        
+              
 
         public void obteninversion(ref double pintura, ref double carton, ref double gancho,ComboBox p,ComboBox c,ComboBox g)
         {
@@ -248,7 +247,7 @@ namespace conectaMYSQL
 
             cosT =Convert.ToDouble(d1.CurrentRow.Cells[1].Value) *Convert.ToDouble(cantidad);
             
-            String query = "Insert into relacion (id_esfera,id_fact,costo_compra,cantidad) values(" + d1.CurrentRow.Cells[0].Value.ToString() + "," + idfact.Text + ","+cosT+","+cantidad+");";
+            String query = "Insert into relacion (id_esfera,id_fact,costo_compra,cantidad) values(" + d1.CurrentRow.Cells[0].Value.ToString() + "," + idfact.Text + ",'"+cosT+"','"+cantidad+"');";
             ms.executequery(ms.conexion(ref m), query, ref m);
             MessageBox.Show(m);
         }
@@ -269,9 +268,9 @@ namespace conectaMYSQL
             vista.muestradataset(d1, set, 0);
         }
 
-        public double calculatotal(DataGridView d1)
+        public double calculatotal(DataGridView d1,Label l)
         {
-            double total = 0;
+            double total = 0,iva=0,totalconiva=0;
 
                 foreach (DataGridViewRow row in d1.Rows)
                 {
@@ -279,7 +278,10 @@ namespace conectaMYSQL
                     total += Convert.ToDouble(row.Cells[3].Value);
                 }
             
-            return total;
+                 iva = total * .15;
+                totalconiva = total + iva;
+                l.Text = "Iva " + iva+"      Total "+total;
+            return totalconiva;
         }
 
 
@@ -355,7 +357,10 @@ namespace conectaMYSQL
             d1.DataSource = relacionfactura;
             d2.DataSource = relacionventa;
         }
+        public void verpornotaofact(ComboBox comb,DataGridView d1)
+        {
 
+        }
         
     }
 }

@@ -62,3 +62,4 @@ C:\Users\Ale\Videos\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.pdb
 C:\Users\Ale\Videos\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.exe
 C:\Users\Ale\Videos\conectaMYSQL\conectaMYSQL\bin\Debug\conectaMYSQL.pdb
 C:\Users\Ale\Videos\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.csprojResolveAssemblyReference.cache
+C:\Users\Ale\Videos\conectaMYSQL\conectaMYSQL\obj\x86\Debug\conectaMYSQL.vistanotafactura.resources

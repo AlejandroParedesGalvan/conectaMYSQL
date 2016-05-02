@@ -33,6 +33,9 @@ namespace conectaMYSQL
             mt.cargacliente(comboBox2);
             mt.cargavendedor(comboBox3);
             mt.ver_esferas(dataGridView1);
+            comboBox1.SelectedIndex = 0;
+            label22.Hide();
+            comboBox1.Hide();
         }
         
 
@@ -46,9 +49,17 @@ namespace conectaMYSQL
 
         private void button6_Click(object sender, EventArgs e)
         {
+            String tipo = "1";
+            if (comboBox1.Text == "Nota")
+            {
+                tipo = "1";
+            }
+            else tipo = "0";
+
+            MessageBox.Show(""+tipo);
             String fecha = "";
             fecha = fe.Value.Year + "/" + fe.Value.Month + "/" + fe.Value.Day;
-            mt.insertafactura(textBox3, comboBox3, comboBox2, fecha);
+            mt.insertafactura(textBox3, comboBox3, comboBox2, fecha,tipo);
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,15 +106,19 @@ namespace conectaMYSQL
             if (comboBox4.Text == "Unidad")
             {
                 cantidad = textBox1.Text;
+            
             }
-            mt.insertacarrito(dataGridView1, textBox3, costo, cantidad);
+            MessageBox.Show(cantidad+"");
+            MessageBox.Show(costo + "");
 
+
+            mt.insertacarrito(dataGridView1, textBox3, costo, cantidad);
             mt.ver_compras(compraDataGridView, textBox3);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox2.Text = mt.calculatotal(compraDataGridView).ToString();
+            textBox2.Text = mt.calculatotal(compraDataGridView,label24).ToString();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,6 +184,19 @@ namespace conectaMYSQL
         {
 
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+
+            mt.ver_esferas(dataGridView1);
+        }
+
+        
         
     }
 }
